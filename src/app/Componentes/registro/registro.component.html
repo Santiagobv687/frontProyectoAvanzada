@@ -1,1 +1,35 @@
-<p>registro works!</p>
+<form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="fullName">Nombre:</label>
+    <input id="fullName" type="text" formControlName="fullName" />
+  </div>
+
+  <div *ngIf="registroForm.get('fullName')?.invalid && registroForm.get('fullName')?.touched">
+    El nombre es requerido y debe tener al menos 3 caracteres.
+  </div>
+
+  <div>
+    <label>Email: </label>
+    <input type="email" formControlName="email" />
+  </div>
+  <div>
+    <label>Fecha de Nacimiento: </label>
+    <input type="date" formControlName="dateBirth" />
+  </div>
+  <div>
+    <label>Contraseña: </label>
+    <input type="password" formControlName="password" />
+  </div>
+  <div>
+    <label>Repetir contraseña: </label>
+    <input type="password" formControlName="confirmPassword" />
+  </div>
+  <div *ngIf="registroForm.hasError('passwordsMismatch')">
+    La contraseña no coincide.
+  </div>
+  <div *ngIf="registroForm.hasError('passwordsMismatch')" class="error">
+    La contraseña no coincide.
+  </div>
+  <button type="submit" [disabled]="registroForm.invalid">Registrarse</button>
+  <div>{{result}}</div>
+</form>
