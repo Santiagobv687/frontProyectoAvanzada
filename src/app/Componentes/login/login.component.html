@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div class="container">
+  <h1>SafeCity</h1>
+  <div class="login-box">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input type="email" formControlName="email" placeholder="Correo" />
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+        Ingresa un correo válido.
+      </div>
+
+      <input type="password" formControlName="password" placeholder="Contraseña" />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+        Ingresa la contraseña.
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+
+      <div [ngClass]="classResult">{{ result }}</div>
+    </form>
+
+    <p>¿No tienes una cuenta? <a href="/register">Registrate</a></p>
+
+    <div class="social-icons">
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+    </div>
+  </div>
+</div>

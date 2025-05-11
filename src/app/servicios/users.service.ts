@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserResponse} from '../dto/user-response';
 import {UserRegistrationRequest} from '../dto/user-registration-request';
+import {LoginResponse} from '../dto/login-response';
+import { LoginRequest } from '../dto/login-request';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,5 +13,8 @@ export class UsersService {
   constructor(private http: HttpClient) {}
   public registrar(user: UserRegistrationRequest): Observable<UserResponse> {
     return this.http.post<UserResponse>(`${this.url}`, user);
+  }
+  login(credentials: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.url}`, credentials);
   }
 }

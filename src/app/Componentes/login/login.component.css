@@ -1,0 +1,79 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  background-image: url('../../../assets/imagenes/Fondo.png'); /* usa aquí tu fondo */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.login-box {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 80%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 20px;
+  background-color: #0a4561;
+  color: white;
+  text-align: center;
+}
+
+button {
+  width: 50%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #1589a6;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:disabled {
+  background-color: gray;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+}
+
+.success {
+  color: lightgreen;
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons i {
+  margin: 0 10px;
+  cursor: pointer;
+}
