@@ -9,7 +9,7 @@ import { LoginRequest } from '../dto/login-request';
   providedIn: 'root'
 })
 export class UsersService {
-  private url = "http://localhost:8080/users";
+  private url = "http://localhost:8080/api/auth/login";
   constructor(private http: HttpClient) {}
   public registrar(user: UserRegistrationRequest): Observable<UserResponse> {
     return this.http.post<UserResponse>(`${this.url}`, user);
