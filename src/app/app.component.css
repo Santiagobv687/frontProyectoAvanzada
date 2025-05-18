@@ -1,0 +1,114 @@
+/* Estilos generales */
+:root {
+  --primary-color: #3a7bd5; /* Azul muy claro casi blanco */
+  --secondary-color: #3a7bd5; /* Azul claro para hover */
+  --active-color: #5d96f0; /* Azul más intenso para activo */
+  --text-color: #2c3e50; /* Azul oscuro para texto */
+  --text-active: #3a7bd5; /* Blanco para texto activo */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Estilos del menú lateral */
+.sidenav {
+  width: 280px;
+  background-color: var(--primary-color);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #3a7bd5;
+}
+
+.logo-container {
+  padding: 25px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+
+.logo-container h1 {
+  color: var(--text-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 20px 0;
+}
+
+nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 14px 25px;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  margin: 5px 15px;
+  border-radius: 8px;
+}
+
+nav ul li a:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+nav ul li a.active {
+  background-color: var(--active-color);
+  color: var(--text-active);
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(58, 123, 213, 0.2);
+}
+
+nav ul li a i {
+  margin-right: 12px;
+  font-size: 1.3rem;
+}
+
+/* Contenido principal */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #ffffff;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 280px;
+  right: 0;
+  padding: 15px;
+  text-align: center;
+  background-color: var(--primary-color);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+/* Material Icons */
+.material-icons {
+  font-size: 22px;
+  vertical-align: middle;
+}

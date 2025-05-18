@@ -1,10 +1,38 @@
-<header>
-  <p>Página inicial de {{ title }}</p>
-  <ul>
-    <li><a routerLink="/">Inicio</a></li>
-    <li><a routerLink="/login">Login</a></li>
-    <li><a routerLink="/register">Registro</a></li>
-  </ul>
-</header>
-<router-outlet />
-<footer>{{ footer }}</footer>
+<div class="app-container">
+  <div class="sidenav">
+    <div class="logo-container">
+      <img src="assets/imagenes/logo.png" alt="Logo" class="logo">
+      <h1>{{ title }}</h1>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="material-icons"></i>
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/login" routerLinkActive="active">
+            <i class="material-icons"></i>
+            <span>Login</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/register" routerLinkActive="active">
+            <i class="material-icons"></i>
+            <span>Registro</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer class="footer">
+    <p>{{ footer }}</p>
+  </footer>
+</div>

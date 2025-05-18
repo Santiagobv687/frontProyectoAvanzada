@@ -1,47 +1,69 @@
-<form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>Nombre: </label>
-    <input type="text" formControlName="fullName" />
-    <div *ngIf="registroForm.get('fullName')?.invalid && registroForm.get('fullName')?.touched" class="error">
-      El nombre es requerido y debe tener al menos 3 caracteres.
-    </div>
-  </div>
+<div class="registration-container">
+  <h2 class="registration-title">Crear nueva cuenta</h2>
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" class="registration-form">
 
-  <div>
-    <label>Email: </label>
-    <input type="email" formControlName="email" />
-    <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched" class="error">
-      Ingrese un  email valido.
+    <div class="form-group">
+      <label class="form-label">Nombre completo</label>
+      <input type="text" formControlName="fullName" class="form-input"
+             placeholder="Ingresa tu nombre completo" />
+      <div *ngIf="registroForm.get('fullName')?.invalid && registroForm.get('fullName')?.touched"
+           class="error-message">
+        <i class="material-icons">error_outline</i>
+        <span>El nombre es requerido</span>
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label>Fecha de Nacimiento: </label>
-    <input type="date" formControlName="dateBirth" />
-    <div *ngIf="registroForm.get('dateBirth')?.invalid && registroForm.get('dateBirth')?.touched" class="error">
-      Ingrese una fecha de nacimiento valida.
+    <div class="form-group">
+      <label class="form-label">Correo electrónico</label>
+      <input type="email" formControlName="email" class="form-input"
+             placeholder="ejemplo@correo.com" />
+      <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched"
+           class="error-message">
+        <i class="material-icons">error_outline</i>
+        <span>Ingrese un email válido</span>
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label>Contraseña: </label>
-    <input type="password" formControlName="password" />
-    <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched" class="error">
-      Ingrese un password valido.
+    <div class="form-group">
+      <label class="form-label">Fecha de nacimiento</label>
+      <input type="date" formControlName="dateBirth" class="form-input" />
+      <div *ngIf="registroForm.get('dateBirth')?.invalid && registroForm.get('dateBirth')?.touched"
+           class="error-message">
+        <i class="material-icons">error_outline</i>
+        <span>Ingrese una fecha válida</span>
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label>Repetir contraseña: </label>
-    <input type="password" formControlName="confirmPassword" />
-    <div *ngIf="registroForm.get('confirmPassword')?.invalid && registroForm.get('confirmPassword')?.touched" class="error">
-      Ingrese un password valido.
+    <div class="form-group">
+      <label class="form-label">Contraseña</label>
+      <input type="password" formControlName="password" class="form-input"
+             placeholder="Mínimo 8 caracteres" />
+      <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched"
+           class="error-message">
+        <i class="material-icons">error_outline</i>
+        <span>Mínimo 8 caracteres</span>
+      </div>
     </div>
-  </div>
-  <div *ngIf="registroForm.hasError('passwordsMismatch')" class="error">
-    La contraseña no coincide.
-  </div>
-  <button type="submit" [disabled]="registroForm.invalid">Registrarse</button>
-  <div class="{{classResult}}">{{result}}</div>
-  <div [ngClass]="classResult">{{result}}</div>
-</form>
+
+    <div class="form-group">
+      <label class="form-label">Confirmar contraseña</label>
+      <input type="password" formControlName="confirmPassword" class="form-input"
+             placeholder="Repite tu contraseña" />
+      <div *ngIf="registroForm.get('confirmPassword')?.invalid && registroForm.get('confirmPassword')?.touched"
+           class="error-message">
+        <i class="material-icons">error_outline</i>
+        <span>Las contraseñas deben coincidir</span>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="registroForm.invalid">
+      <i class="material-icons">person_add</i>
+      <span>Registrarse</span>
+    </button>
+
+    <div *ngIf="result" class="form-result" [ngClass]="classResult">
+      <i class="material-icons">{{ classResult === 'success' ? 'check_circle' : 'error' }}</i>
+      <span>{{result}}</span>
+    </div>
+  </form>
+</div>
