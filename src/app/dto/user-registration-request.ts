@@ -1,6 +1,13 @@
 export interface UserRegistrationRequest {
-  email: string,
-  password: string,
-  fullName: string,
-  dateBirth: Date
+  id: string;
+  nombre: string;
+  ciudadResidencia: string;
+  telefono: string;
+  direccion: string;
+  correo: string;
+  contraseña: string;
+  ubicacion: {
+    type: 'Point';
+    coordinates: [number, number]; // [lng, lat]
+  };
 }

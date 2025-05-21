@@ -10,9 +10,11 @@ import { LoginRequest } from '../dto/login-request';
 })
 export class UsersService {
   private url = "http://localhost:8080/api/auth/login";
+  private urlRegistro = "http://localhost:8080/api/auth/register"
   constructor(private http: HttpClient) {}
+
   public registrar(user: UserRegistrationRequest): Observable<UserResponse> {
-    return this.http.post<UserResponse>(`${this.url}`, user);
+    return this.http.post<UserResponse>(`${this.urlRegistro}`, user);
   }
   login(credentials: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.url}`, credentials);

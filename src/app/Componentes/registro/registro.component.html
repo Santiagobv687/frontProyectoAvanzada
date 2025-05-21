@@ -1,69 +1,94 @@
-<div class="registration-container">
-  <h2 class="registration-title">Crear nueva cuenta</h2>
-  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" class="registration-form">
+<div class="registro-container">
+  <div class="form-section">
+    <h2 class="registro-title">Registro usuario</h2>
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" class="registro-form">
 
-    <div class="form-group">
-      <label class="form-label">Nombre completo</label>
-      <input type="text" formControlName="fullName" class="form-input"
-             placeholder="Ingresa tu nombre completo" />
-      <div *ngIf="registroForm.get('fullName')?.invalid && registroForm.get('fullName')?.touched"
-           class="error-message">
-        <i class="material-icons">error_outline</i>
-        <span>El nombre es requerido</span>
+      <!-- ID (oculto pero mantenido por compatibilidad) -->
+      <div class="form-group">
+        <label class="form-label">Cedula de Ciudadania:</label>
+        <input type="text" formControlName="id" class="form-input" placeholder="Número de identificación" />
+        <div *ngIf="registroForm.get('id')?.invalid && registroForm.get('id')?.touched" class="error-message">
+          <i class="material-icons">error_outline</i>
+          <span>La cedula es requerida</span>
+        </div>
       </div>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">Correo electrónico</label>
-      <input type="email" formControlName="email" class="form-input"
-             placeholder="ejemplo@correo.com" />
-      <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched"
-           class="error-message">
-        <i class="material-icons">error_outline</i>
-        <span>Ingrese un email válido</span>
+      <!-- Nombre -->
+      <div class="form-group">
+        <label class="form-label">Nombre:</label>
+        <input type="text" formControlName="nombre" class="form-input" placeholder="Ingresa tu nombre completo" />
+        <div *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched" class="error-message">
+          <i class="material-icons">error_outline</i>
+          <span>El nombre es requerido</span>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="form-label">Fecha de nacimiento</label>
-      <input type="date" formControlName="dateBirth" class="form-input" />
-      <div *ngIf="registroForm.get('dateBirth')?.invalid && registroForm.get('dateBirth')?.touched"
-           class="error-message">
-        <i class="material-icons">error_outline</i>
-        <span>Ingrese una fecha válida</span>
+      <!-- Ciudad -->
+      <div class="form-group">
+        <label class="form-label">Ciudad:</label>
+        <input type="text" formControlName="ciudadResidencia" class="form-input" placeholder="Ciudad de residencia" />
+        <div *ngIf="registroForm.get('ciudadResidencia')?.invalid && registroForm.get('ciudadResidencia')?.touched" class="error-message">
+          <i class="material-icons">error_outline</i>
+          <span>La ciudad es requerida</span>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="form-label">Contraseña</label>
-      <input type="password" formControlName="password" class="form-input"
-             placeholder="Mínimo 8 caracteres" />
-      <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched"
-           class="error-message">
-        <i class="material-icons">error_outline</i>
-        <span>Mínimo 8 caracteres</span>
+      <!-- Teléfono -->
+      <div class="form-group">
+        <label class="form-label">Telefono:</label>
+        <input type="text" formControlName="telefono" class="form-input" placeholder="Número de contacto" />
+        <div *ngIf="registroForm.get('telefono')?.invalid && registroForm.get('telefono')?.touched" class="error-message">
+          <i class="material-icons">error_outline</i>
+          <span>El teléfono es requerido</span>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="form-label">Confirmar contraseña</label>
-      <input type="password" formControlName="confirmPassword" class="form-input"
-             placeholder="Repite tu contraseña" />
-      <div *ngIf="registroForm.get('confirmPassword')?.invalid && registroForm.get('confirmPassword')?.touched"
-           class="error-message">
-        <i class="material-icons">error_outline</i>
-        <span>Las contraseñas deben coincidir</span>
+      <!-- Dirección -->
+      <div class="form-group">
+        <label class="form-label">Dirección:</label>
+        <input type="text" formControlName="direccion" class="form-input" placeholder="Dirección de residencia" />
+        <div *ngIf="registroForm.get('direccion')?.invalid && registroForm.get('direccion')?.touched" class="error-message">
+          <i class="material-icons">error_outline</i>
+          <span>La dirección es requerida</span>
+        </div>
       </div>
-    </div>
 
-    <button type="submit" class="submit-button" [disabled]="registroForm.invalid">
-      <i class="material-icons">person_add</i>
-      <span>Registrarse</span>
-    </button>
+      <!-- Email -->
+      <div class="form-group">
+        <label class="form-label">Email:</label>
+        <input type="email" formControlName="correo" class="form-input" placeholder="ejemplo@correo.com" />
+        <div *ngIf="registroForm.get('correo')?.invalid && registroForm.get('correo')?.touched" class="error-message">
+          <i class="material-icons">error_outline</i>
+          <span>Ingrese un email válido</span>
+        </div>
+      </div>
 
-    <div *ngIf="result" class="form-result" [ngClass]="classResult">
-      <i class="material-icons">{{ classResult === 'success' ? 'check_circle' : 'error' }}</i>
-      <span>{{result}}</span>
-    </div>
-  </form>
+      <!-- Contraseña -->
+      <div class="form-group">
+        <label class="form-label">Contraseña:</label>
+        <input type="password" formControlName="contraseña" class="form-input" placeholder="Mínimo 8 caracteres" />
+        <div *ngIf="registroForm.get('contraseña')?.invalid && registroForm.get('contraseña')?.touched" class="error-message">
+          <i class="material-icons">error_outline</i>
+          <span>Mínimo 8 caracteres</span>
+        </div>
+      </div>
+
+      <!-- Botón de registro -->
+      <button type="submit" class="registro-button" [disabled]="registroForm.invalid">
+        Registrarse
+      </button>
+
+      <!-- Resultado -->
+      <div *ngIf="result" class="form-result" [ngClass]="classResult">
+        <i class="material-icons">{{ classResult === 'success' ? 'check_circle' : 'error' }}</i>
+        <span>{{ result }}</span>
+      </div>
+    </form>
+  </div>
+
+  <!-- Mapbox -->
+  <div class="map-section">
+    <label class="form-label">Ubicación (haz clic en el mapa)</label>
+    <div id="map" class="map-container"></div>
+  </div>
+
 </div>
