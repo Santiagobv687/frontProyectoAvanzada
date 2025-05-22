@@ -52,7 +52,7 @@ export class LoginComponent {
           if (rol === 'ADMIN') {
             this.router.navigateByUrl('/admin', { replaceUrl: true });
           } else if (rol === 'USER') {
-            // Asumiendo que existe una ruta para usuarios normales
+            this.router.navigateByUrl('/usuario', { replaceUrl: true });
           }
         } else {
           // Si no hay información de rol, manejar el caso
