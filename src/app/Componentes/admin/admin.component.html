@@ -1,0 +1,36 @@
+<div class="app-container">
+  <div class="sidenav">
+    <div class="logo-container">
+      <img src="assets/imagenes/logo.png" alt="Logo" class="logo">
+      <h1>{{ title }}</h1>
+      <h2 class="admin-title">Administrador</h2>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="material-icons"></i>
+            <span>Perfil</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/categorias" routerLinkActive="active">
+            <i class="material-icons"></i>
+            <span>Categorías</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/reportes" routerLinkActive="active">
+            <i class="material-icons"></i>
+            <span>Reportes</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
