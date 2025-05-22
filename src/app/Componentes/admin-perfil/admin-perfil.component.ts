@@ -4,17 +4,23 @@ import {MapaService} from '../../servicios/mapa.service';
 import {UsersService} from '../../servicios/users.service';
 import {AuthService} from '../../servicios/auth.service';
 import mapboxgl from 'mapbox-gl';
+import {RouterModule, RouterOutlet} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {UserRegistrationRequest} from '../../dto/user-registration-request';
+import {ErrorResponse} from '../../dto/error-response';
+import {UserEdit} from '../../dto/user-edit';
 
 @Component({
     selector: 'app-admin-perfil',
+    standalone: true,
+  imports: [RouterModule, CommonModule, ReactiveFormsModule],
     templateUrl: './admin-perfil.component.html',
-    imports: [
-        ReactiveFormsModule
-    ],
     styleUrls: ['./admin-perfil.component.css']
 })
 export class AdminPerfilComponent implements OnInit, AfterViewInit {
   perfilForm!: FormGroup;
+  result = '';
+  classResult = 'success';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,27 +34,31 @@ export class AdminPerfilComponent implements OnInit, AfterViewInit {
     this.perfilForm = this.formBuilder.group({
       id: [' '],
       nombre: [''],
-      ciudad: [''],
+      ciudadResidencia: [''],
       telefono: [''],
       direccion: [''],
-      email: [''],
-      contrasena: [''],
+      correo: [''],
+      contraseña: [''],
       ubicacion: [''] // Para el marcador del mapa
     });
 
     // Obtiene usuario autenticado
     const usuario = this.authService.getUsuario();
+    console.log('Usuario desde AuthService:', usuario); // 🔍 Debug
+
     if (usuario) {
       this.perfilForm.patchValue({
         id: usuario.id || '',
         nombre: usuario.nombre || '',
-        ciudad: usuario.ciudad || '',
+        ciudadResidencia: usuario.ciudadResidencia || '',
         telefono: usuario.telefono || '',
         direccion: usuario.direccion || '',
-        email: usuario.email || '',
+        correo: usuario.correo || '',
+        contraseña: usuario.contraseña || '',
         ubicacion: usuario.ubicacion || null
-        // Nota: no rellenamos la contraseña por seguridad
       });
+
+      console.log('Valores del formulario después de patchValue:', this.perfilForm.value); // 🔍 Debug
     }
   }
 
@@ -81,7 +91,22 @@ export class AdminPerfilComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-
+    const newUser = this.perfilForm.value as UserEdit;
+    this.usersService.editar(newUser).subscribe({
+      next: data => {
+        this.result = 'Perfil modificado correctamente';
+        this.classResult = 'success';
+      },
+      error: error => {
+        if (Array.isArray(error.error)) {
+          this.result = error.error.map((item: ErrorResponse) => item.message).join(', ');
+        } else {
+          this.result = error.error.message;
+        }
+        this.classResult = 'error';
+      }
+    });
   }
+
 }
 
