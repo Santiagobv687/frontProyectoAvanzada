@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { UsersService } from '../../servicios/users.service';
 import { NgIf, NgClass } from '@angular/common';
 import { Router } from '@angular/router';
+import {AuthService} from '../../servicios/auth.service';
 
 
 @Component({
@@ -17,7 +18,10 @@ export class LoginComponent {
   result = '';
   classResult = 'success';
 
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService,  private router: Router) {
+  constructor(private formBuilder: FormBuilder,
+              private usersService: UsersService,
+              private router: Router,
+              private authService: AuthService) {
     this.loginForm = this.formBuilder.group({
       correo: ['', [Validators.required, Validators.email]],
       contraseña: ['', [Validators.required]]
@@ -42,9 +46,11 @@ export class LoginComponent {
         console.log('Usuario:', response.usuario);
         console.log('Rol del usuario:', response.usuario?.rol);
 
+
         this.result = 'Inicio de sesión exitoso';
         this.classResult = 'success';
-
+        const usuario = response.usuario;
+        this.authService.login(usuario);
         // Validación del rol con verificaciones adicionales
         if (response.usuario && response.usuario.rol) {
           const rol = response.usuario.rol;
