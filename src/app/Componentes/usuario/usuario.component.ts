@@ -1,7 +1,9 @@
 
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
+import {FormGroup} from "@angular/forms";
+import {UsersService} from "../../servicios/users.service";
 
 
 @Component({
@@ -16,8 +18,14 @@ import * as mapboxgl from 'mapbox-gl';
 })
 export class UsuarioComponent implements OnInit{
   title = '';
+  usuarioForm!: FormGroup;
+  result = '';
+  classResult = 'success';
 
   private map!: mapboxgl.Map;
+
+  constructor(private usersService: UsersService, private router: Router) {}
+
 
   ngOnInit(): void {
     this.map = new mapboxgl.Map({
@@ -29,5 +37,14 @@ export class UsuarioComponent implements OnInit{
     });
 
     this.map.addControl(new mapboxgl.NavigationControl());
+
+  }
+
+  abrirCrearReporte():void {
+    this.router.navigateByUrl('/crearReporte', { replaceUrl: true });
+  }
+
+  abrirMisReportes(): void {
+    this.router.navigateByUrl('/crearReporte', { replaceUrl: true });
   }
 }

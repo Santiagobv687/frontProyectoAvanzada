@@ -2,9 +2,9 @@
   <div class="form-section">
     <h2>Crear reporte</h2>
 
-    <form>
+    <form [formGroup]="CrearReporteform" (ngSubmit)="onSubmit()">
       <label for="titulo">Título:</label>
-      <input id="titulo" type="text" placeholder="Escribe el título" />
+      <input id="titulo" type="text" formControlName="titulo" placeholder="Escribe el título" />
 
       <label for="categoria">Categoría:</label>
       <input id="categoria" type="text" placeholder="Selecciona una categoría" />
@@ -18,7 +18,7 @@
       <button type="submit" class="btn-publicar">Publicar reporte</button>
     </form>
 
-    <button class="btn-volver">Volver a menú</button>
+    <button (click)="volverAUsuario()" class="btn-volver ">Volver a menú</button>
   </div>
   <div class="map-container">
     <div id="map"></div>
